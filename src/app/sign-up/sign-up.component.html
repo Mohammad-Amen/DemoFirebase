@@ -1,0 +1,89 @@
+<div class="sign-up-container">
+    <form (ngSubmit)="signUp(signUpForm)" #signUpForm="ngForm">
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input
+          type="text"
+          id="firstName"
+          [(ngModel)]="firstName"
+          name="firstName"
+          required
+          class="form-control"
+          (focus)="clearError()"
+          (input)="clearError()"
+        >
+        <div *ngIf="signUpForm.submitted && firstName === ''" class="error">First name is required.</div>
+      </div>
+  
+      <div class="form-group">
+        <label for="lastName">Last Name (Optional)</label>
+        <input
+          type="text"
+          id="lastName"
+          [(ngModel)]="lastName"
+          name="lastName"
+          class="form-control"
+          (focus)="clearError()"
+          (input)="clearError()"
+        >
+      </div>
+  
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          [(ngModel)]="email"
+          name="email"
+          required
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+          class="form-control"
+          (focus)="clearError()"
+          (input)="clearError()"
+        >
+        <div *ngIf="signUpForm.submitted && email === ''" class="error">Email is required.</div>
+        <div *ngIf="signUpForm.submitted && signUpForm.controls['email']?.invalid && email !== ''" class="error">Invalid email format.</div>
+      </div>
+  
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          [(ngModel)]="password"
+          name="password"
+          required
+          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}"
+          class="form-control"
+          (focus)="clearError()"
+          (input)="clearError()"
+        >
+        <div *ngIf="signUpForm.submitted && password === ''" class="error">Password is required.</div>
+        <div *ngIf="signUpForm.submitted && signUpForm.controls['password']?.invalid && password !== ''" class="error">Password must be at least 8 characters long and include at least 1 lowercase letter, 1 uppercase letter, 1 number, and 1 special character.</div>
+      </div>
+  
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <input
+          type="password"
+          id="confirmPassword"
+          [(ngModel)]="confirmPassword"
+          name="confirmPassword"
+          required
+          class="form-control"
+          (focus)="clearError()"
+          (input)="clearError()"
+        >
+        <div *ngIf="signUpForm.submitted && confirmPassword === ''" class="error">Confirm password is required.</div>
+        <div *ngIf="signUpForm.submitted && password !== confirmPassword" class="error">Passwords must match.</div>
+      </div>
+  
+      <div *ngIf="error" class="error">{{ error }}</div>
+      
+      <button type="submit" class="btn btn-primary">Sign Up</button>
+      <div *ngIf="isLoading" class="isLoading">
+        <div class="spinner"></div>
+      </div>
+    </form>
+  </div>
+  

@@ -1,0 +1,42 @@
+<div class="login-container">
+  <form (ngSubmit)="login(loginForm)" #loginForm="ngForm">
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        type="email"
+        id="email"
+        [(ngModel)]="email"
+        name="email"
+        required
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+        class="form-control"
+        (focus)="clearError()"
+        (input)="clearError()"
+      >
+      <div *ngIf="loginForm.submitted && email === ''" class="error">Email is required.</div>
+      <div *ngIf="loginForm.submitted && loginForm.controls['email']?.invalid && email !== ''" class="error">Invalid email format.</div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input
+        type="password"
+        id="password"
+        [(ngModel)]="password"
+        name="password"
+        required
+        class="form-control"
+        (focus)="clearError()"
+        (input)="clearError()"
+      >
+      <div *ngIf="loginForm.submitted && password === ''" class="error">Password is required.</div>
+    </div>
+
+    <div *ngIf="error" class="error">{{ error }}</div>
+    
+    <button type="submit" class="btn btn-primary">Login</button>
+    <div *ngIf="isLoading" class="isLoading">
+      <div class="spinner"></div>
+    </div>
+  </form>
+</div>

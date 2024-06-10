@@ -1,0 +1,93 @@
+$primary-color: #007bff;
+$primary-hover-color: #0056b3;
+$error-color: #dc3545;
+$font-color: #333;
+$border-color: #ccc;
+$focus-glow-color: rgba(0,86,179,0.25);
+$spinner-border-size: 40px;
+
+.sign-up-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background: #fff;
+  box-sizing: border-box;
+
+  .form-group {
+    margin-bottom: 15px;
+
+    .label {
+      display: block;
+      margin-bottom: 5px;
+      color: $font-color;
+      font-weight: bold;
+    }
+
+    .form-control {
+      display: block;
+      width: 100%;
+      padding: 10px 15px;
+      font-size: 16px;
+      border: 1px solid $border-color;
+      border-radius: 4px;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+      transition: border-color 0.3s, box-shadow 0.3s;
+      box-sizing: border-box;
+
+      &:focus {
+        border-color: $primary-color;
+        box-shadow: 0 0 0 3px $focus-glow-color;
+        outline: none;
+      }
+    }
+  }
+
+  .btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    color: #fff;
+    background-color: $primary-color;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: $primary-hover-color;
+    }
+  }
+
+  .error {
+    color: $error-color;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+
+  .isLoading {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+
+    .spinner {
+      border: 4px solid rgba(0, 0, 0, 0.1);
+      border-radius: 50%;
+      border-top-color: $primary-color;
+      width: $spinner-border-size;
+      height: $spinner-border-size;
+      animation: spin 1s linear infinite;
+    }
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
